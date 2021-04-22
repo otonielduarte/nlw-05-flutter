@@ -11,7 +11,7 @@ class _ScoreCardWidgetState extends State<ScoreCardWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
+      margin: EdgeInsets.symmetric(horizontal: 12),
       height: 136,
       width: double.maxFinite,
       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -20,6 +20,7 @@ class _ScoreCardWidgetState extends State<ScoreCardWidget> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(flex: 1, child: ChartWidget()),
           Expanded(
@@ -31,6 +32,7 @@ class _ScoreCardWidgetState extends State<ScoreCardWidget> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text("Vamos começar", style: AppTextStyles.heading),
+                  SizedBox(height: 8),
                   Text(
                     "Complete os desafios e avance em conhecimento",
                     style: AppTextStyles.body,
