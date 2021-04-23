@@ -22,11 +22,12 @@ class _HomePageState extends State<HomePage> {
 
   @override
   void initState() {
-    super.initState();
+    print('init state <<<<<<<<<<<<<<<<<<<<<<<');
     controller = HomeController();
-    controller.getQuizzes();
-    controller.getUser();
+    controller.initController();
     controller.stateNotifier.addListener(() => setState(() {}));
+    controller.progressNotifier.addListener(() => setState(() {}));
+    super.initState();
   }
 
   @override
@@ -40,8 +41,12 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }
+    print("controller >>>>>>>>>>>${controller.progress}");
     return Scaffold(
-      appBar: AppBarWidget(user: controller.user!),
+      appBar: AppBarWidget(
+        user: controller.user!,
+        progress: controller.progress,
+      ),
       backgroundColor: AppColors.chartSecondary,
       body: Container(
         padding: EdgeInsets.all(16),
@@ -85,13 +90,13 @@ class _HomePageState extends State<HomePage> {
 
   _onTap(QuizzModel quizz) async {
     final quizzResult = await push(context, ChallengePage(quizz.questions));
+
     push(
-      context,
-      FinalPage(
-        quizzName: quizz.title,
-        length: quizz.questions.length,
-        right: quizzResult,
-      ),
-    );
+        context,
+        FinalPage(
+          quizzName: quizz.title,
+          length: quizz.questions.length,
+          right: quizzResult,
+        )).then((_) => controller.updateScore(5));
   }
 }

@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_nlw_05/core/core.dart';
 import 'package:flutter_nlw_05/home/widgets/chart/chart_widget.dart';
 
-class ScoreCardWidget extends StatefulWidget {
-  @override
-  _ScoreCardWidgetState createState() => _ScoreCardWidgetState();
-}
+class ScoreCardWidget extends StatelessWidget {
+  final double progress;
 
-class _ScoreCardWidgetState extends State<ScoreCardWidget> {
+  const ScoreCardWidget({
+    Key? key,
+    required this.progress,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    print('progress >>>>>>>>>>>>>>>>>>>>>> $progress');
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 12),
       height: 136,
@@ -22,7 +25,10 @@ class _ScoreCardWidgetState extends State<ScoreCardWidget> {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Expanded(flex: 1, child: ChartWidget()),
+          Expanded(
+            flex: 1,
+            child: ChartWidget(progress),
+          ),
           Expanded(
             flex: 3,
             child: Padding(

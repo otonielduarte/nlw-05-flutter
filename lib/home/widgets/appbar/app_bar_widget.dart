@@ -5,8 +5,11 @@ import 'package:flutter_nlw_05/shared/models/user_model.dart';
 
 class AppBarWidget extends PreferredSize {
   final UserModel user;
-  AppBarWidget({required this.user})
-      : super(
+  final double progress;
+  AppBarWidget({
+    required this.user,
+    required this.progress,
+  }) : super(
           preferredSize: Size.fromHeight(250),
           child: Container(
             height: 250,
@@ -47,7 +50,7 @@ class AppBarWidget extends PreferredSize {
                 ),
                 Align(
                   alignment: Alignment(0.0, 1.0),
-                  child: ScoreCardWidget(),
+                  child: ScoreCardWidget(progress: progress),
                 ),
               ],
             ),

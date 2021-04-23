@@ -73,7 +73,8 @@ class _ChallengePageState extends State<ChallengePage> {
               ),
               NextButtonWidget.green(
                 "Confirmar",
-                onPressed: () => Navigator.pop(context, controller.rightCount),
+                onPressed: () =>
+                    Navigator.pop(context, 5 /*  controller.rightCount */),
               ),
             ],
           ),

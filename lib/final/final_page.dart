@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_nlw_05/core/core.dart';
-import 'package:flutter_nlw_05/home/home_page.dart';
-import 'package:flutter_nlw_05/shared/util/nav.dart';
 import 'package:share_plus/share_plus.dart';
 
 class FinalPage extends StatelessWidget {
@@ -71,7 +69,7 @@ class FinalPage extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => push(context, HomePage(), replace: true),
+                  onPressed: () => Navigator.pop(context),
                   child: Text(
                     'Voltar ao início',
                     style: TextStyle(color: AppColors.grey),
