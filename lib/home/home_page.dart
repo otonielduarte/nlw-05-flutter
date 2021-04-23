@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_nlw_05/challenge/challenge_page.dart';
 import 'package:flutter_nlw_05/core/core.dart';
+import 'package:flutter_nlw_05/final/final_page.dart';
 import 'package:flutter_nlw_05/home/home_controller.dart';
 import 'package:flutter_nlw_05/home/home_state.dart';
 import 'package:flutter_nlw_05/home/widgets/appbar/app_bar_widget.dart';
 import 'package:flutter_nlw_05/home/widgets/level_button/level_button_widget.dart';
 import 'package:flutter_nlw_05/home/widgets/quizCard/quiz_card_widget.dart';
+import 'package:flutter_nlw_05/shared/models/quizz_model.dart';
+import 'package:flutter_nlw_05/shared/util/nav.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -61,17 +65,32 @@ class _HomePageState extends State<HomePage> {
                     mainAxisSpacing: 8,
                     padding: EdgeInsets.only(top: 16),
                     children: controller.quizzes!
-                        .map((quiz) => QuizCard(
-                              quiz.title,
-                              iconAsset: 'assets/images/${quiz.image}.png',
-                              current: quiz.questionAwnsered,
-                              max: quiz.questions.length,
-                            ))
+                        .map(
+                          (quizz) => QuizCard(
+                            quizz.title,
+                            iconAsset: 'assets/images/${quizz.image}.png',
+                            current: quizz.questionAwnsered,
+                            max: quizz.questions.length,
+                            onTap: () => _onTap(quizz),
+                          ),
+                        )
                         .toList()),
               ),
             )
           ],
         ),
+      ),
+    );
+  }
+
+  _onTap(QuizzModel quizz) async {
+    final quizzResult = await push(context, ChallengePage(quizz.questions));
+    push(
+      context,
+      FinalPage(
+        quizzName: quizz.title,
+        length: quizz.questions.length,
+        right: quizzResult,
       ),
     );
   }
